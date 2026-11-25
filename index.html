@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leclerc</title>
+<style>
+:root{
+  --creme:#EEE4DA;
+  --sand:#D8C4AC;
+  --dusty:#C8A49F;
+  --burg:#4D0E13;
+  --tx:#1A1A1A;
+  --bg:#F7F7F4;
+  --radius:12px;
+}
+@media (prefers-color-scheme:dark){
+  :root{ 
+    --creme:#2a2a2a; 
+    --sand:#3a322b; 
+    --dusty:#4a3a35; 
+    --burg:#6b1b1f;
+    --tx:#e8e8e8; 
+    --bg:#141414; 
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+     background:var(--bg);color:var(--tx);line-height:1.6}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--sand);z-index:10}
+header .w{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;
+          flex-wrap:wrap;align-items:center;justify-content:space-between}
+header .logo{font-family:serif;font-size:1.5rem;font-weight:400;color:var(--burg)}
+nav{display:flex;gap:24px;font-family:sans-serif;font-size:.92rem;color:var(--tx)}
+nav a{color:inherit;text-decoration:none;transition:.2s}
+nav a:hover{color:var(--burg)}
+
+/* ===== Единый контейнер и заголовки секций ===== */
+.w{max-width:1100px;margin:0 auto;padding:0 20px}
+.section-title{
+  font-size:clamp(1.8rem,3vw,2.4rem);
+  text-align:center;
+  margin-bottom:48px;
+  color:var(--burg);
+}
+
+/* ===== Hero ===== */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:80px 20px;background:var(--creme);border-radius:var(--radius);margin:60px auto;max-width:1100px}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.1;margin-bottom:14px;color:var(--burg)}
+.hero .lead{color:var(--tx);max-width:520px;font-size:1.08rem;margin-bottom:28px}
+.hero .btn{display:inline-block;background:var(--dusty);color:#fff;border-radius:var(--radius);
+     padding:16px 36px;text-decoration:none;font-weight:600;font-size:1.08rem;transition:.2s;border:1px solid var(--dusty)}
+.hero .btn:hover{background:#b88a80;border-color:#b88a80;transform:translateY(-2px)}
+.hero img{width:100%;border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;
+          background:var(--sand);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
+/* ===== Категории ===== */
+#cats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  margin-bottom:60px;
+}
+.cat-btn{
+  background:#fff;
+  border:1px solid var(--sand);
+  border-radius:var(--radius);
+  padding:24px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--burg);
+}
+.cat-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  border-color:var(--burg);
+}
+.cat-btn.active{
+  background:var(--dusty);
+  color:#fff;
+  border-color:var(--dusty);
+}
+
+/* ===== Фон для Принципов и Галереи ===== */
+.bg-colored{
+  background:var(--creme);
+  padding:80px 20px;
+  margin:60px 0;
+}
+
+/* ===== Принципы ===== */
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.principle{background:#fff;border:1px solid var(--sand);border-radius:var(--radius);padding:24px;transition:.2s}
+.principle:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.principle h3{margin-bottom:8px;font-size:1.1rem;color:var(--burg)}
+.principle p{color:var(--tx);font-size:.95rem;line-height:1.5}
+
+/* ===== Услуги ===== */
+.services{padding:80px 20px;margin:60px 0}
+.services .w{max-width:1100px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.service-card{background:#fff;border:1px solid var(--sand);border-radius:var(--radius);padding:24px;transition:.2s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.service-card h3{margin-bottom:8px;font-size:1.1rem;color:var(--burg)}
+.service-card p{color:var(--tx);font-size:.95rem;margin-bottom:14px}
+.service-card .price{font-weight:700;color:var(--burg);margin-bottom:16px}
+
+/* ===== Галерея ===== */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gallery img{width:100%;border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;background:var(--sand)}
+.project-info{background:#fff;border:1px solid var(--sand);border-radius:var(--radius);padding:24px;margin-top:16px}
+.project-info h3{margin-bottom:8px;font-size:1.1rem;color:var(--burg)}
+.project-info p{color:var(--tx);font-size:.95rem;line-height:1.5}
+.project-btn{display:inline-block;background:transparent;color:var(--burg);border:1px solid var(--sand);
+             border-radius:var(--radius);padding:12px 24px;text-decoration:none;font-weight:600;margin-top:16px;transition:.2s}
+.project-btn:hover{background:var(--sand)}
+
+/* ===== Контакты ===== */
+.contact{background:#fff;padding:80px 20px;margin:60px 0}
+.contact h2{font-size:clamp(1.8rem,3vw,2.4rem);text-align:center;margin-bottom:48px;color:var(--burg)}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin:0 auto}
+.contact label{font-size:.9rem;color:var(--tx);margin-bottom:6px;display:block}
+.contact input,textarea,select{width:100%;background:#fff;color:var(--tx);
+  border:1px solid var(--sand);border-radius:var(--radius);padding:12px;font-size:1rem}
+.contact textarea{grid-column:1/-1;resize:vertical;min-height:110px}
+
+/* Кнопка формы */
+.contact .btn{
+  display:inline-block;
+  background:var(--dusty);
+  color:#fff;
+  border:1px solid var(--dusty);
+  border-radius:var(--radius);
+  padding:16px 36px;
+  font-weight:600;
+  font-size:1.08rem;
+  cursor:pointer;
+  transition:.2s;
+  justify-self:start;
+  font-family:inherit;
+}
+.contact .btn:hover{
+  background:#b88a80;
+  border-color:#b88a80;
+  transform:translateY(-2px);
+}
+
+.contact .form-ok{grid-column:1/-1;color:var(--dusty);font-weight:600;min-height:1.4em}
+
+/* ===== Подвал ===== */
+footer{border-top:1px solid var(--sand);margin-top:70px;padding-top:40px}
+footer .w{max-width:1100px;margin:0 auto;padding:30px 20px;display:flex;
+          flex-wrap:wrap;gap:14px;justify-content:space-between;color:var(--tx);font-size:.92rem}
+
+@media(max-width:760px){.hero,.gallery,.contact form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="w"><div class="logo">Леклер</div>
+    <nav><a href="#hero">Главная</a><a href="#services">Услуги</a><a href="#portfolio">Портфолио</a><a href="#contact">Контакты</a></nav></div>
+</header>
+<main>
+  <!-- hero -->
+  <section id="hero" class="hero">
+    <div>
+      <h1>Привет! Я Александра Леклер, веб-дизайнер</h1>
+      <p class="lead">Создаю сайты на Tilda и дизайн-проекты любой сложности в Figma. Исследую аудиторию и превращаю задачи бизнеса в удобные, продающие решения.</p>
+      <a class="btn" href="#contact">Оставить заявку</a>
+    </div>
+    <img src="images/hero.jpg" alt="Александра Леклер — веб-дизайнер" loading="lazy">
+  </section>
+
+  <!-- Категории -->
+  <section id="categories">
+    <div class="w">
+      <h2 class="section-title">Категории услуг</h2>
+      <div class="services-grid" id="cats"></div>
+    </div>
+  </section>
+
+  <!-- Принципы (кремовый фон) -->
+  <section id="principles" class="bg-colored">
+    <div class="w">
+      <h2 class="section-title">Принципы моей работы</h2>
+      <div class="principles">
+        <div class="principle"><h3>Работаю на результат</h3><p>Сайт должен продавать за вас и раскрывать ценность продукта.</p></div>
+        <div class="principle"><h3>Маркетинг + дизайн</h3><p>Проекты получаются функциональными и отличаются от конкурентов.</p></div>
+        <div class="principle"><h3>Исследование ЦА</h3><p>Знаю, какой подход эффективен именно для вашего бизнеса.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги (светлый фон) -->
+  <section id="services" class="services">
+    <div class="w">
+      <h2 class="section-title">Услуги и стоимость</h2>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- Галерея (кремовый фон) -->
+  <section id="portfolio" class="bg-colored">
+    <div class="w">
+      <h2 class="section-title">Галерея моих проектов</h2>
+      <div class="gallery">
+        
+        <!-- Проект 1 -->
+        <img src="images/project1.jpg" alt="Многостраничный сайт для тренера по питанию" loading="lazy">
+        <div class="project-info">
+          <h3>Многостраничный сайт для тренера по правильному питанию</h3>
+          <p>Сайт с дополнительными страницами для продажи электронной книги, подключена корзина и платёжная система.</p>
+          <a class="project-btn" href="#">Смотреть сайт</a>
+        </div>
+
+        <!-- Проект 2 -->
+        <img src="images/project2.jpg" alt="Дизайн для интернет-магазина женского нижнего белья" loading="lazy">
+        <div class="project-info">
+          <h3>Дизайн для интернет-магазина женского нижнего белья</h3>
+          <p>Разработка концепции, создание UI/UX макетов каталога и карточек товара в Figma с акцентом на эстетику и удобство покупки.</p>
+          <a class="project-btn" href="#">Смотреть сайт</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="contact">
+    <div class="w">
+      <h2>Оставить заявку</h2>
+      <form id="f">
+        <label for="n">Ваше имя</label><input id="n" placeholder="Иван">
+        <label for="e">Почта</label><input id="e" type="email" placeholder="ivan@mail.ru">
+        <label for="s">Услуга</label>
+        <select id="s" style="width:100%;background:#fff;color:var(--tx);border:1px solid var(--sand);border-radius:var(--radius);padding:12px;font-size:1rem">
+          <option>Веб-дизайн (Tilda)</option><option>UI/UX дизайн (Figma)</option><option>Лендинг под ключ</option><option>Ребрендинг</option></select>
+        <label for="m">Расскажите о задаче</label>
+        <textarea id="m" placeholder="Что нужно сделать, к какому сроку, какие есть материалы"></textarea>
+        
+        <button class="btn" type="submit">Отправить заявку</button>
+        <div class="form-ok" id="ok" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="w"><span>Александра Леклер · веб-дизайнер</span>
+    <span>Москва · alex@leklerc.design · +7 900 000-00-00</span></div>
+</footer>
+
+<script>
+var cats=["Все","Лендинг","Интернет-магазин","Промо-сайт","Многостраничный","Дизайн-макеты","Ребрендинг","Исследование ЦА"];
+var cur="Все",catsEl=document.getElementById("cats");
+function showCats(){
+  catsEl.innerHTML="";
+  cats.forEach(function(c){
+    var b=document.createElement("button");b.textContent=c;b.className="cat-btn";
+    if(c===cur)b.className+=" active";
+    b.onclick=function(){cur=c;showCats();};
+    catsEl.appendChild(b);
+  });
+}
+showCats();
+
+var services=[
+ {name:"Лендинг",desc:"Одностраничный сайт под конкретную цель. Цена: от 12 000 ₽",cat:"Лендинг"},
+ {name:"Интернет-магазин",desc:"Каталог, корзина, оплата. Цена: от 25 000 ₽",cat:"Интернет-магазин"},
+ {name:"Промо-сайт",desc:"Сайт-визитка компании. Цена: от 10 000 ₽",cat:"Промо-сайт"},
+ {name:"Многостраничный",desc:"Корпоративный сайт. Цена: от 30 000 ₽",cat:"Многостраничный"},
+ {name:"Дизайн-макеты",desc:"UI/UX макеты в Figma. Цена: от 8 000 ₽",cat:"Дизайн-макеты"},
+ {name:"Ребрендинг",desc:"Обновление фирменного стиля. Цена: от 18 000 ₽",cat:"Ребрендинг"},
+ {name:"Исследование ЦА",desc:"Анализ аудитории и конкурентов. Цена: от 6 000 ₽",cat:"Исследование ЦА"}
+];
+var gridEl=document.getElementById("services-grid");
+function showServices(){
+  gridEl.innerHTML="";
+  services.forEach(function(s){
+    var card=document.createElement("div");card.className="service-card";
+    card.innerHTML='<h3>'+s.name+'</h3><p>'+s.desc+'</p><div class="price">'+s.desc.split('Цена:')[1]+'</div>';
+    gridEl.appendChild(card);
+  });
+}
+showServices();
+
+document.getElementById("f").onsubmit=function(ev){
+  ev.preventDefault();
+  var n=document.getElementById("n").value.trim(),
+      e=document.getElementById("e").value.trim(),
+      ok=document.getElementById("ok");
+  if(!n||!e){ok.textContent="Укажите имя и почту.";return;}
+  ok.textContent="Спасибо, "+n+"! Заявка отправлена, отвечу в течение дня.";
+};
+</script>
+</body>
+</html>
